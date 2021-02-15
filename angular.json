@@ -51,7 +51,10 @@
               "apps/evergreen-dev/src/favicon.ico",
               "apps/evergreen-dev/src/assets"
             ],
-            "styles": ["apps/evergreen-dev/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/evergreen-dev/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
