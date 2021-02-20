@@ -1,11 +1,5 @@
 {
-  "targets": {
-    "lets-chat-v2": {
-      "hosting": {
-        "lets-chat": [
-          "lets-chat-v2"
-        ]
-      }
-    }
+  "projects": {
+    "default": "dpsthree-7ff6f"
   }
 }
