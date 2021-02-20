@@ -1,14 +1,9 @@
 {
   "npmScope": "dps",
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -18,12 +13,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "ZmEzOGVhOGMtODM1MS00NWU5LWExMDEtMDRjNjhiOWVkMjA4fHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -31,14 +21,12 @@
     }
   },
   "projects": {
-    "evergreen-dev": {
-      "tags": []
-    },
+    "evergreen-dev": { "tags": [] },
     "evergreen-dev-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "evergreen-dev"
-      ]
-    }
+      "implicitDependencies": ["evergreen-dev"]
+    },
+    "lets-chat": { "tags": [] },
+    "lets-chat-e2e": { "tags": [], "implicitDependencies": ["lets-chat"] }
   }
 }

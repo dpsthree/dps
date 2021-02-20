@@ -115,7 +115,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/evergreen-dev"],
+          "outputs": [
+            "coverage/apps/evergreen-dev"
+          ],
           "options": {
             "jestConfig": "apps/evergreen-dev/jest.config.js",
             "passWithNoTests": true
@@ -144,7 +146,134 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/evergreen-dev-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/evergreen-dev-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "lets-chat": {
+      "projectType": "application",
+      "root": "apps/lets-chat",
+      "sourceRoot": "apps/lets-chat/src",
+      "prefix": "dps",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/lets-chat",
+            "index": "apps/lets-chat/src/index.html",
+            "main": "apps/lets-chat/src/main.ts",
+            "polyfills": "apps/lets-chat/src/polyfills.ts",
+            "tsConfig": "apps/lets-chat/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/lets-chat/src/favicon.ico",
+              "apps/lets-chat/src/assets"
+            ],
+            "styles": [
+              "apps/lets-chat/src/styles.scss",
+              "node_modules/milligram/dist/milligram.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/lets-chat/src/environments/environment.ts",
+                  "with": "apps/lets-chat/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "lets-chat:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "lets-chat:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "lets-chat:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/lets-chat/src/**/*.ts",
+              "apps/lets-chat/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/lets-chat"
+          ],
+          "options": {
+            "jestConfig": "apps/lets-chat/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
+        }
+      }
+    },
+    "lets-chat-e2e": {
+      "root": "apps/lets-chat-e2e",
+      "sourceRoot": "apps/lets-chat-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/lets-chat-e2e/cypress.json",
+            "tsConfig": "apps/lets-chat-e2e/tsconfig.e2e.json",
+            "devServerTarget": "lets-chat:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lets-chat:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/lets-chat-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
