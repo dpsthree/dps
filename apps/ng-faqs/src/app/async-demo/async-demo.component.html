@@ -1,0 +1,7 @@
+<!-- TODO: Add video count -->
+<mat-grid-list cols="3" rows="2">
+  <mat-grid-tile *ngFor="let video of (videos | async)">
+    <mat-grid-tile-header>{{ video.snippet.title }} </mat-grid-tile-header>
+    <img [src]="'http://img.youtube.com/vi/' + video.id.videoId + '/0.jpg'" />
+  </mat-grid-tile>
+</mat-grid-list>

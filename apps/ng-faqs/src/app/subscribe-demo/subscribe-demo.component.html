@@ -1,0 +1,14 @@
+<h1>User List</h1>
+<mat-form-field>
+  <input
+    matInput
+    [formControl]="filterControl"
+    type="text"
+    placeholder="Filter users"
+  />
+</mat-form-field>
+<mat-list>
+  <mat-list-item *ngFor="let user of (users | async)">
+    {{ user.firstName + ' ' + user.lastName }}
+  </mat-list-item>
+</mat-list>

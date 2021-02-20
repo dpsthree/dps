@@ -32,6 +32,8 @@
     "performance-playground-e2e": {
       "tags": [],
       "implicitDependencies": ["performance-playground"]
-    }
+    },
+    "ng-faqs": { "tags": [] },
+    "ng-faqs-e2e": { "tags": [], "implicitDependencies": ["ng-faqs"] }
   }
 }

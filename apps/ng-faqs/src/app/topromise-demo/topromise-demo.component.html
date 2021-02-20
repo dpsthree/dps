@@ -1,0 +1,19 @@
+<div class="user-list">
+  <h1>Users</h1>
+  <mat-list>
+    <mat-list-item *ngFor="let user of (users | async)">
+      {{ user.firstName + ' ' + user.lastName }}
+    </mat-list-item>
+  </mat-list>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="createUser()">
+  <h1>New user form</h1>
+  <mat-form-field>
+    <input formControlName="firstName" matInput placeholder="First Name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input formControlName="lastName" matInput placeholder="Last Name" />
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
+</form>
