@@ -27,6 +27,11 @@
       "implicitDependencies": ["evergreen-dev"]
     },
     "lets-chat": { "tags": [] },
-    "lets-chat-e2e": { "tags": [], "implicitDependencies": ["lets-chat"] }
+    "lets-chat-e2e": { "tags": [], "implicitDependencies": ["lets-chat"] },
+    "performance-playground": { "tags": [] },
+    "performance-playground-e2e": {
+      "tags": [],
+      "implicitDependencies": ["performance-playground"]
+    }
   }
 }

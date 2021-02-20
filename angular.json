@@ -115,9 +115,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/evergreen-dev"
-          ],
+          "outputs": ["coverage/apps/evergreen-dev"],
           "options": {
             "jestConfig": "apps/evergreen-dev/jest.config.js",
             "passWithNoTests": true
@@ -146,9 +144,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/evergreen-dev-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/evergreen-dev-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -236,9 +232,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/lets-chat"
-          ],
+          "outputs": ["coverage/apps/lets-chat"],
           "options": {
             "jestConfig": "apps/lets-chat/jest.config.js",
             "passWithNoTests": true
@@ -271,9 +265,128 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
+            "lintFilePatterns": ["apps/lets-chat-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "performance-playground": {
+      "projectType": "application",
+      "root": "apps/performance-playground",
+      "sourceRoot": "apps/performance-playground/src",
+      "prefix": "dps",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/performance-playground",
+            "index": "apps/performance-playground/src/index.html",
+            "main": "apps/performance-playground/src/main.ts",
+            "polyfills": "apps/performance-playground/src/polyfills.ts",
+            "tsConfig": "apps/performance-playground/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/performance-playground/src/favicon.ico",
+              "apps/performance-playground/src/assets",
+              "apps/performance-playground/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/performance-playground/src/styles.scss"],
+            "scripts": [],
+            "webWorkerTsConfig": "apps/performance-playground/tsconfig.worker.json"
+
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/performance-playground/src/environments/environment.ts",
+                  "with": "apps/performance-playground/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/performance-playground/ngsw-config.json",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "performance-playground:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "performance-playground:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "performance-playground:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
             "lintFilePatterns": [
-              "apps/lets-chat-e2e/**/*.{js,ts}"
+              "apps/performance-playground/src/**/*.ts",
+              "apps/performance-playground/src/**/*.html"
             ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/performance-playground"],
+          "options": {
+            "jestConfig": "apps/performance-playground/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "performance-playground-e2e": {
+      "root": "apps/performance-playground-e2e",
+      "sourceRoot": "apps/performance-playground-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/performance-playground-e2e/cypress.json",
+            "tsConfig": "apps/performance-playground-e2e/tsconfig.e2e.json",
+            "devServerTarget": "performance-playground:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "performance-playground:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/performance-playground-e2e/**/*.{js,ts}"]
           }
         }
       }

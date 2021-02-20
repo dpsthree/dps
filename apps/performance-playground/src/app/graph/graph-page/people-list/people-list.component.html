@@ -1,0 +1,9 @@
+<!-- Unpack observables and send to display component -->
+<app-people-list-display
+  [entities]="entities | async"
+  [search]="search | async"
+  (searchChanged)="searchChanged($event)"
+  [count]="count | async"
+  (countChanged)="countChanged($event)"
+>
+</app-people-list-display>
