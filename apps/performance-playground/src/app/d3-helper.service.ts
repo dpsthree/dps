@@ -11,7 +11,7 @@ import {
 } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 const entityEndPoint =
-  'https://us-central1-angular-performance-playground.cloudfunctions.net/graphEntities';
+  'https://us-central1-dpsthree-7ff6f.cloudfunctions.net/graphEntities';
 /**
  * Used to abstract the complexities and concerns of D3
  *
@@ -78,7 +78,7 @@ export class D3HelperService {
             entities: GraphNode[];
             relationships: SimulationLinkDatum<GraphNode>[];
           };
-        }>(entityEndPoint, { data: { count } })
+        }>(entityEndPoint, { count })
       ),
       map((data) => data.result),
       publishReplay(),

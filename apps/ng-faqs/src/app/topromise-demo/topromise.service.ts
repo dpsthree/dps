@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const baseUrl = 'http://localhost:8085';
-
 export interface User {
   firstName: string;
   lastName: string;
@@ -15,10 +13,10 @@ export class TopromiseService {
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get<User>(baseUrl + '/users');
+    return this.http.post<User>('https://us-central1-dpsthree-7ff6f.cloudfunctions.net/demoUsers', {});
   }
 
   addUser(newUser: User) {
-    return this.http.post(baseUrl + '/users', newUser);
+    return this.http.post('https://us-central1-dpsthree-7ff6f.cloudfunctions.net/demoUsers', newUser);
   }
 }

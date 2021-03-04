@@ -16,7 +16,7 @@ export interface Video {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AsyncService {
   constructor(private http: HttpClient) {}
@@ -26,7 +26,7 @@ export class AsyncService {
       // tslint:disable-next-line:max-line-length
       'https://www.googleapis.com/youtube/v3/search?key=AIzaSyCqsMwaEyq-Zhij3BU-tk4EYQqX-Bb0BkA&channelId=UC4fiBcLILQscg3LO8dtpdgA&part=snippet,id&order=date&maxResults=50';
     return this.http.get<YouTubeResults>(url).pipe(
-      map(results => {
+      map((results) => {
         return results.items;
       })
     );
